@@ -33,7 +33,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>Active participants</h1>
+        <h1>Active users</h1>
         {this.state.connectedUsers.map(function(name, index){
             return <li key={ index }>{name}</li>;
         })}
