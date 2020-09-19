@@ -1,0 +1,28 @@
+<html>
+<body>
+  <div>
+    <h1>Active users</h1>
+    <ul>
+      <li>One</li>
+    </ul>
+  </div>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+
+  const socket = io();
+  socket.on('connect', function() {
+    let username = prompt('Choose a username');
+    let room = window.location.pathname.slice(6);
+
+    socket.emit('joinRoom', {
+      room,
+      username,
+    });
+
+    socket.on('updateRoomCount', (userCount) => {
+      console.log(userCount);
+    });
+  });
+ </script>
+</html>

@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es5",                          
+    "module": "commonjs",                     
+    "jsx": "react",                     
+    "jsxFactory": "h",
+    "sourceMap": true, 
+    "removeComments": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "allowJs": true
+  },
+  "include": [
+    "src/*.ts",
+    "src/*.tsx", "src/components/Header/header.tsx", "src/components/Main/main.tsx"
+  ],
+  "types": [
+    "typePatches"
+  ]
+}

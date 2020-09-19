@@ -1,0 +1,44 @@
+version: '3.3'
+
+services:
+  nodejs:
+    image: node:alpine
+    volumes:
+      - .:/app
+    restart: always
+    working_dir: /app
+    command: sh -c "npm install && npm start"
+    ports:
+      - "3000:${PORT:-3000}"
+    networks:
+      - appnet
+
+  web:
+    build: ./client
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:./app/:rw
+    command: sh -c "npm install && npm start"
+    environment:
+      - NODE_ENV=dev
+
+  redis:
+    image: "redis:alpine"
+    command: redis-server
+    ports:
+      - "6379:6379"
+
+    volumes:
+      - $PWD/redis-data:/var/lib/redis
+      - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+
+    environment:
+      - REDIS_REPLICATION_MODE=master
+
+    networks:
+      - appnet
+
+networks:
+  appnet:
+    driver: "bridge"
